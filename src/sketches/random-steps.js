@@ -1,3 +1,5 @@
+export const skip = false;
+
 export default function(sketch) {
 
   function Walker () {
@@ -10,16 +12,10 @@ export default function(sketch) {
     };
 
     this.step = function() {
-      let choice = Math.floor(Math.random() * 4);
-      if (choice == 0) {
-        this.x += 1;
-      } else if (choice == 1) {
-        this.x -= 1;
-      } else if (choice == 2) {
-        this.y += 1;
-      } else {
-        this.y -= 1;
-      }
+      let stepx = Math.floor(Math.random() * 3) - 1;
+      let stepy = Math.floor(Math.random() * 3) - 1;
+      this.x += stepx;
+      this.y += stepy;
     };
   }
 
