@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const PATHS = {
   app: path.join(__dirname, 'src'),
   build: path.join(__dirname, 'dist'),
-}
+};
 
 module.exports = {
   entry: {
@@ -20,30 +20,30 @@ module.exports = {
   
   module: {
     rules: [
-     { 
-       test: /\.js$/,
-       enforce: 'pre',
+      { 
+        test: /\.js$/,
+        enforce: 'pre',
 
-       loader: 'eslint-loader',
-       options: {
-         emitWarning: true,
-       },
-     },
-     {
-       test: /\.js$/,
-       include: PATHS.app,
+        loader: 'eslint-loader',
+        options: {
+          emitWarning: true,
+        },
+      },
+      {
+        test: /\.js$/,
+        include: PATHS.app,
 
-       loader: 'babel-loader',
-       options: {
+        loader: 'babel-loader',
+        options: {
          // Enable caching for improved performance during
          // development.
          // It uses default OS directory by default. If you need
          // something more custom, pass a path to it.
          // I.e., { cacheDirectory: '<path>' }
-         cacheDirectory: true,
-       },
-     },
-    ]
+          cacheDirectory: true,
+        },
+      },
+    ],
   },
   
   devtool: 'inline-source-map',
