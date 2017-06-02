@@ -1,18 +1,6 @@
+import p5 from 'p5';
+
 export const skip = false;
-
-class PVector {
-
-  constructor(x, y) {
-    this.x = x;
-    this.y = y;
-  }
-
-  add(pv) {
-    return new PVector(this.x + pv.x, this.y + pv.y);
-  }
-
-}
-
 
 export default function(sketch) {
 
@@ -20,12 +8,24 @@ export default function(sketch) {
 
     constructor() {
       // 边界条件的检查还是有点问题,会导致卡在边界
-      this.location = new PVector(Math.random() * 150 + 16, Math.random() * 150 + 16);
-      this.velocity = new PVector(2.5, 5);
+      this.location = sketch.createVector(Math.random() * 150 + 16, Math.random() * 150 + 16);
+      this.velocity = sketch.createVector(2.5, 5);
+      this.acceleration = sketch.createVector(0.001, 0.001);
     }
 
     update() {
-      this.location = this.location.add(this.velocity);
+
+      let mouse = sketch.createVector(sketch.mouseX, sketch.mouseY);
+      let dir = p5.Vector.sub(mouse, this.location);
+
+      dir.normalize();
+      dir.mult(0.05);
+
+      this.acceleration = dir;
+
+      this.velocity.add(this.acceleration);
+      this.velocity.limit(10);
+      this.location.add(this.velocity);
     }
 
     checkEdgs() {
