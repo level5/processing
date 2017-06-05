@@ -1,6 +1,6 @@
 import p5 from 'p5';
 
-export const skip = false;
+export const skip = true;
 
 export default function(sketch) {
 
